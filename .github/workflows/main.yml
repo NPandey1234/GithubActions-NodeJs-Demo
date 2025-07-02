@@ -21,3 +21,7 @@ jobs:
        run: npm ci
      - name: Execute the test cases
        run: npm test
+     - name: Build the code
+       run: npm run build
+     - name: Deploy the code
+       run: echo "Deploy the code"
