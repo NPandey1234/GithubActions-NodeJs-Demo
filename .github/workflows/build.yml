@@ -1,0 +1,45 @@
+# USES: what action we want to use
+#run: shell/linux command to execute
+#automatic: Whenerver there is a commit on the repository in any branch manster/dev the workflow should trigger
+# whenever there is a commit on bracch master/dev this workflow will  trigger
+# branches_ignore : skip the list of branches
+ #run: |
+      # sudo apt-get update
+       #sudo-apt-get install nodejs
+
+
+name: build  nodejs Application 
+on: 
+  workflow_dispatch:        
+  push:                                
+   branches:
+     - master
+     - main
+   branches-ignore:
+      -test
+      - dev
+  pull_request:
+      branches:
+        -master
+jobs:
+   job1:
+    runs-on: ubuntu-latest
+    steps:
+     - name: clone the repository
+       uses: actions/checkout@v4
+     - name: Install nodejs
+       uses: actions/setup-node@v4
+       with:
+            node-version: 18
+            cache: 'npm'
+     - name: Install dependencies
+       run: npm ci
+     - name: Execute the test cases
+       run: npm test
+     - name: Build the code
+       run: npm run build
+     - name: Deploy the code
+       run: echo "Deploy the code"
+
+     
+
