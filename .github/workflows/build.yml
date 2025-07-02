@@ -15,9 +15,7 @@ on:
    branches:
      - master
      - main
-   branches-ignore:
-      -test
-      - dev
+   
   pull_request:
       branches:
         -master
