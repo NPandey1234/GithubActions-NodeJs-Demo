@@ -1,5 +1,5 @@
 
-name: build nodejs application
+name: build nodejs application run with 2 node-version
 on: 
  workflow_dispatch:
  push:
