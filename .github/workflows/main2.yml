@@ -3,8 +3,7 @@ name: build nodejs application
 on: 
  workflow_dispatch:
  push:
-  branches:
-   -master
+  
 jobs:
  job1:
    strategy: 
