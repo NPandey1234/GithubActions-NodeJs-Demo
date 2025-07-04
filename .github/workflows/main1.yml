@@ -1,0 +1,29 @@
+name: build nodejs application
+on: 
+ workflow_dispatch:
+ push:
+  branches:
+   -master
+jobs:
+ job1:
+   strategy: 
+    matrix:
+     node-versiom: [18]
+     operating-system: [ubuntu-latest,window-latest]
+   runs-on: ${{ matrix.operating-system }}
+   steps:
+     - name: clone the repository
+       uses: actions/checkout@v4
+     - name: Install nodejs
+       uses: actions/setup-node@v4
+       with:
+            node-version: ${{ matrix.node-version }}
+            cache: 'npm'
+     - name: Install dependencies
+       run: npm ci
+     - name: Execute the test cases
+       run: npm test
+     - name: Build the code
+       run: npm run build
+     - name: Deploy the code
+       run: echo "Deploy the code"
